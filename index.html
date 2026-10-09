@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Eon Words</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="top-panel">
+  <header class="page-header">
+    <div class="brand"><div><h1 data-i18n="Eon Words">Eon Words</h1><p data-i18n="看图片 · 听发音 · 认识世界">看图片 · 听发音 · 认识世界</p></div></div>
+    <button id="printBtn" class="print-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V3h12v6M6 17H3V9h18v8h-3M6 14h12v7H6z"/></svg><span data-i18n="打印">打印</span></button>
+  </header>
+  <section class="settings" aria-label="浏览设置" data-i18n-aria="浏览设置">
+    <fieldset id="languageMode" class="language-modes">
+      <legend data-i18n="语言模式">语言模式</legend>
+      <div class="language-options">
+      <label><input type="radio" name="languageMode" value="zh-CN" checked> 中文</label>
+      <label><input type="radio" name="languageMode" value="en-US"> English</label>
+      <label><input type="radio" name="languageMode" value="ja-JP"> 日本語</label>
+      <label><input type="radio" name="languageMode" value="es-MX"> Español</label>
+      </div>
+    </fieldset>
+    <label class="tag-filter"><span data-i18n="卡片筛选">卡片筛选</span><select id="tagFilter"><option value="all" data-i18n="全部（不含隐藏）">全部（不含隐藏）</option><option value="favorite" data-i18n="喜爱">喜爱</option><option value="unfamiliar" data-i18n="陌生">陌生</option><option value="hidden" data-i18n="隐藏">隐藏</option></select></label>
+    <button id="startAuto"><span data-i18n="自动播放">自动播放</span></button>
+  </section>
+  <fieldset id="japaneseDisplay" class="japanese-display" hidden>
+    <legend data-i18n="日文显示">日文显示</legend>
+    <label><input type="radio" name="japaneseDisplay" value="both" checked> <span data-i18n="汉字和假名">汉字和假名</span></label>
+    <label><input type="radio" name="japaneseDisplay" value="kanji"> <span data-i18n="只显示汉字">只显示汉字</span></label>
+    <label><input type="radio" name="japaneseDisplay" value="kana"> <span data-i18n="只显示假名">只显示假名</span></label>
+  </fieldset>
+  <div class="category-panel">
+  <div class="category-heading"><h2 data-i18n="探索分类">探索分类</h2><p id="filterStatus" class="filter-status" role="status"></p></div>
+  <nav id="tabs" aria-label="大类" data-i18n-aria="大类"></nav>
+  <nav id="subtabs" aria-label="小类" data-i18n-aria="小类" hidden></nav>
+  </div>
+  </div>
+  <main id="grid"></main>
+</div>
+
+<!-- fullscreen card view -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="识字卡详情" data-i18n-aria="识字卡详情">
+  <div class="browse-controls"><label><input id="randomBrowse" type="checkbox"> <span data-i18n="随机翻阅">随机翻阅</span></label><button id="autoPlay" aria-pressed="false"><span data-i18n="自动播放">自动播放</span></button></div>
+  <button class="modal-close" id="modalClose" aria-label="关闭" data-i18n-aria="关闭">✕</button>
+  <button class="modal-nav prev" id="modalPrev" aria-label="上一张" data-i18n-aria="上一张">‹</button>
+  <button class="modal-nav next" id="modalNext" aria-label="下一张" data-i18n-aria="下一张">›</button>
+  <div class="modal-card" id="modalCard"></div>
+</div>
+
+<!-- print options -->
+<dialog id="printDialog">
+  <h2 data-i18n="打印卡片">打印卡片</h2>
+  <p id="printCount"></p>
+  <div class="print-options">
+    <button data-layout="1"><span data-i18n="每页 1 张">每页 1 张</span><br><small data-i18n="大卡片">大卡片</small></button>
+    <button data-layout="4"><span data-i18n="每页 4 张">每页 4 张</span><br><small data-i18n="小卡片">小卡片</small></button>
+  </div>
+  <button id="printCancel" class="cancel" data-i18n="取消">取消</button>
+</dialog>
+
+<div id="print-area"></div>
+
+<script src="data/categories.js"></script>
+<script src="data/translations.js"></script>
+<script src="data/assets.js"></script>
+<script src="data/image-prompts.js"></script>
+<script src="data/sound-prompts.js"></script>
+<script src="data/category-definitions.js"></script>
+<script src="data/category-translations.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

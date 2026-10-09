@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+*.log
+*.part
+/tmp/
+/output/
+/AGENTS.md
+
+# Keep full-resolution source images local; publish WebP only.
+/images/*.png
